@@ -3,7 +3,7 @@ const { response } = require("express");
 
 // moving our API Key to the backend for better security
 const app = new Clarifai.App({
-	apiKey: "97096f877c394cdcb36eb1bc6401dd29",
+	apiKey: process.env.API_CLARIFAI,
 });
 
 //
