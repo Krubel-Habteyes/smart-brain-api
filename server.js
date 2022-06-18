@@ -27,12 +27,14 @@ const image = require("./controllers/image");
 // 	});
 
 const db = knex({
-		client: "pg",
-		connection: {
-			connectionString: process.env.DATABASE_URL,
-			ssl: true,
+	client: "pg",
+	connection: {
+		connectionString: process.env.DATABASE_URL,
+		ssl: {
+			rejectUnauthorized: false,
 		},
-	});
+	},
+});
 
 const app = express();
 app.use(express.json());
@@ -60,9 +62,8 @@ app.post("/imageurl", (req, res) => {
 	image.handleApiCall(req, res);
 });
 
-
 app.get("/", (req, res) => {
-	res.send('it is working');
+	res.send("it is working");
 });
 
 app.listen(process.env.PORT || 3000, () => {
