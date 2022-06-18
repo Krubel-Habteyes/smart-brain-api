@@ -9,22 +9,32 @@ const signin = require("./controllers/signin");
 const profile = require("./controllers/profile");
 const image = require("./controllers/image");
 
-const db = knex({
-	client: "pg",
-	connection: {
-		host: "postgresql-clean-84356",
-		port: 5433,
-		user: "postgres",
-		password: "",
-		database: "smart-brain",
-	},
-});
+// const db = knex({
+// 	client: "pg",
+// 	connection: {
+// 		host: "postgresql-clean-84356",
+// 		port: 5433,
+// 		user: "postgres",
+// 		password: "",
+// 		database: "smart-brain",
+// 	},
+// });
 
 // db.select("*")
 // 	.from("users")
 // 	.then((data) => {
 // 		console.log(data);
 // 	});
+
+const db = knex({
+		client: "pg",
+		connection: {
+			host: "postgresql-clean-84356",
+			port: 5433,
+			host: process.env.DATABASE_URL,
+			ssl: true,
+		},
+	});
 
 const app = express();
 app.use(express.json());
